@@ -42,6 +42,11 @@ mlruns/
 outputs/
 multirun/
 wandb/
+runs/
+
+# Downloaded model weights
+*.pt
+*.pth
 
 # Environment
 .env
