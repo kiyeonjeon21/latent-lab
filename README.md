@@ -123,6 +123,7 @@ uv run lab run dl_diffusion_inference                          # Stable Diffusio
 | CNN | Simple CNN (95K params) | CIFAR-10 | 56.4% (3ep), ~80%+ (20ep) | MPS GPU | ~2min/3ep |
 | Autoencoder | Conv AE (latent=32) | MNIST | Recon Loss 0.0047 | MPS GPU | ~1min/10ep |
 | GAN | DCGAN | MNIST | G:1.39, D:1.01 (stable) | MPS GPU | ~50sec/10ep |
+| Diffusion | SD-Turbo | text-to-image | 512x512 image generated, 30 steps | MPS GPU | ~40sec |
 
 CNN supports timm pretrained models: `-o model.pretrained=resnet18` (uses `timm.create_model`)
 
@@ -139,6 +140,28 @@ uv run lab serve mlx-community/Llama-3.2-3B-Instruct-4bit    # OpenAI-compatible
 | Inference | Llama 3.2 3B (4-bit) | MLX GPU | ~6sec load, fast generation |
 
 First run downloads the model (~2.5GB for 3B). Subsequent runs use cache.
+
+### Computer Vision (`domain: cv`)
+
+```bash
+uv run lab run cv_classification                              # ResNet18 on MPS
+uv run lab run cv_detection_yolo                              # YOLO11n on COCO8 (50 epochs)
+```
+
+| Experiment | Model | Dataset | Result | Device |
+|-----------|-------|---------|--------|--------|
+| Classification | ResNet18 (pretrained) | - | Model loaded on MPS | MPS GPU |
+| Detection | YOLO11n (50ep) | COCO8 | **mAP50: 89.8%, mAP50-95: 64.7%** | MPS GPU |
+
+### NLP (`domain: nlp`)
+
+```bash
+uv run lab run nlp_classification                             # DistilBERT on SST-2
+```
+
+| Experiment | Model | Task | Result | Device |
+|-----------|-------|------|--------|--------|
+| Classification | DistilBERT (SST-2) | Sentiment | Model loaded on MPS | MPS GPU |
 
 ### Reinforcement Learning (`domain: rl`)
 
@@ -222,3 +245,11 @@ Logged per run: config params, metrics (accuracy, loss, etc.), system metrics (C
 | **MLX** | Apple-native, best LLM perf (up to 4x vs M4) | Primary for LLM |
 | **TensorFlow** | `tensorflow-metal` stalled at v1.2.0, only supports TF ≤2.18 | Excluded |
 | **JAX** | `jax-metal` abandoned, community `jax-mps` very early | Excluded |
+
+## Known Issues
+
+| Issue | Status | Workaround |
+|-------|--------|------------|
+| **ollama crash on macOS 26 + M5** | ollama 0.18.3 Metal shader compilation fails (`bfloat`/`half` type mismatch in `MetalPerformancePrimitives`). | Use MLX-LM for local LLM inference instead. RAG notebook requires ollama update. |
+| **SD 2.1 download fails unauthenticated** | Some HF models require auth token. | Use `stabilityai/sd-turbo` (works without auth) or set `HF_TOKEN`. |
+| **PyTorch MPS no float64** | Double precision not supported on MPS GPU. | Offload to CPU: `tensor.to("cpu").double()` |
