@@ -1,0 +1,25 @@
+defaults:
+  - base
+  - _self_
+
+name: ml_classification_iris
+description: "Classical ML classification comparison (RF, XGBoost, LightGBM)"
+domain: ml
+task: classify
+
+data:
+  name: iris  # iris, wine, digits, breast_cancer, or path to CSV
+
+model:
+  name: random_forest  # random_forest, xgboost, lightgbm, svm, logistic_regression
+  n_estimators: 100
+  max_depth: null
+
+training:
+  learning_rate: 0.1
+  seed: 42
+
+tags:
+  - ml
+  - classification
+  - sklearn

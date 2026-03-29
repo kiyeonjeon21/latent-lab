@@ -1,0 +1,29 @@
+defaults:
+  - base
+  - _self_
+
+name: dl_gan_mnist
+description: "DCGAN on MNIST with MPS"
+domain: dl
+task: train_gan
+
+data:
+  name: mnist
+  path: data/raw
+
+model:
+  name: dcgan
+  framework: torch
+  latent_dim: 100
+
+training:
+  epochs: 50
+  batch_size: 128
+  learning_rate: 2e-4
+  seed: 42
+
+tags:
+  - dl
+  - gan
+  - mnist
+  - mps

@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# ML artifacts
+models/checkpoints/
+models/adapters/
+models/exports/
+*.ckpt
+*.safetensors
+*.bin
+*.gguf
+*.mlpackage/
+
+# Data (tracked by DVC or too large for git)
+data/raw/*
+data/interim/*
+data/processed/*
+data/external/*
+!data/**/.gitkeep
+
+# Experiment outputs
+mlruns/
+outputs/
+multirun/
+wandb/
+
+# Environment
+.env
+.env.local
+
+# Notebooks
+*.ipynb_checkpoints/
+
+# Reports
+reports/figures/*
+!reports/figures/.gitkeep
+
+# OS
+Thumbs.db
+.DS_Store

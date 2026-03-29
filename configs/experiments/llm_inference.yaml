@@ -1,0 +1,26 @@
+defaults:
+  - base
+  - _self_
+
+name: llm_inference_demo
+description: "MLX LLM inference experiment"
+domain: llm
+task: inference
+
+model:
+  name: mistral-7b-4bit
+  framework: mlx
+  pretrained: mlx-community/Mistral-7B-Instruct-v0.3-4bit
+  quantize: 4
+
+# Inference-specific settings
+max_tokens: 256
+temperature: 0.7
+prompts:
+  - "Explain the concept of attention mechanism in transformers."
+  - "Write a Python function to calculate fibonacci numbers."
+
+tags:
+  - llm
+  - inference
+  - mlx

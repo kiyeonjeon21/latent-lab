@@ -1,0 +1,25 @@
+defaults:
+  - base
+  - _self_
+
+name: ml_regression_housing
+description: "Regression on California Housing (RF, XGBoost, LightGBM)"
+domain: ml
+task: regress
+
+data:
+  name: california
+
+model:
+  name: xgboost  # random_forest, xgboost, lightgbm
+  n_estimators: 200
+  max_depth: 6
+
+training:
+  learning_rate: 0.1
+  seed: 42
+
+tags:
+  - ml
+  - regression
+  - xgboost

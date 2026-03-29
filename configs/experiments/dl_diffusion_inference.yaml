@@ -1,0 +1,22 @@
+defaults:
+  - base
+  - _self_
+
+name: dl_diffusion_sd
+description: "Stable Diffusion inference on MPS"
+domain: dl
+task: diffusion_inference
+
+model:
+  name: stable-diffusion
+  framework: torch
+  pretrained: stabilityai/stable-diffusion-2-1-base
+
+prompt: "a serene landscape with mountains and a lake at sunset, digital painting"
+num_inference_steps: 30
+
+tags:
+  - dl
+  - diffusion
+  - inference
+  - mps

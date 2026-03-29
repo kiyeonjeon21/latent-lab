@@ -1,0 +1,30 @@
+defaults:
+  - base
+  - _self_
+
+name: dl_cnn_cifar10
+description: "CNN training on CIFAR-10 with PyTorch MPS"
+domain: dl
+task: train_cnn
+
+data:
+  name: cifar10
+  path: data/raw
+
+model:
+  name: simple_cnn  # simple_cnn or timm model name (resnet18, efficientnet_b0, etc.)
+  framework: torch
+  pretrained: ""  # set model name here to use timm pretrained
+
+training:
+  epochs: 20
+  batch_size: 128
+  learning_rate: 1e-3
+  weight_decay: 1e-4
+  seed: 42
+
+tags:
+  - dl
+  - cnn
+  - cifar10
+  - mps

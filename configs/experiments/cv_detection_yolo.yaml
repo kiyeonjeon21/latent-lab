@@ -1,0 +1,28 @@
+defaults:
+  - base
+  - _self_
+
+name: cv_detection_yolo
+description: "Object detection with YOLO on MPS"
+domain: cv
+task: detect
+
+data:
+  name: coco8
+  path: coco8.yaml
+
+model:
+  name: yolo11n
+  framework: torch
+  pretrained: yolo11n.pt
+
+training:
+  epochs: 50
+  batch_size: 16
+  seed: 42
+
+tags:
+  - cv
+  - detection
+  - yolo
+  - mps

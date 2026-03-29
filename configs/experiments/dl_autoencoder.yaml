@@ -1,0 +1,29 @@
+defaults:
+  - base
+  - _self_
+
+name: dl_autoencoder_mnist
+description: "Convolutional Autoencoder on MNIST"
+domain: dl
+task: train_autoencoder
+
+data:
+  name: mnist
+  path: data/raw
+
+model:
+  name: conv_autoencoder
+  framework: torch
+  latent_dim: 32
+
+training:
+  epochs: 30
+  batch_size: 128
+  learning_rate: 1e-3
+  seed: 42
+
+tags:
+  - dl
+  - autoencoder
+  - mnist
+  - mps

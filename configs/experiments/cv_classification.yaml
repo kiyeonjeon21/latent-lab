@@ -1,0 +1,30 @@
+defaults:
+  - base
+  - _self_
+
+name: cv_classification
+description: "Image classification with PyTorch MPS"
+domain: cv
+task: classify
+
+data:
+  name: cifar10
+  path: ""
+  split: train
+
+model:
+  name: resnet18
+  framework: torch
+  pretrained: resnet18
+
+training:
+  epochs: 20
+  batch_size: 64
+  learning_rate: 1e-3
+  seed: 42
+
+tags:
+  - cv
+  - classification
+  - pytorch
+  - mps

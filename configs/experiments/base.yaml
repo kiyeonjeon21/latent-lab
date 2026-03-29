@@ -1,0 +1,41 @@
+defaults:
+  - _self_
+
+name: unnamed_experiment
+description: ""
+domain: general  # llm, cv, nlp, rl, general
+task: ""
+
+data:
+  name: ""
+  path: ""
+  split: train
+  max_samples: null
+
+model:
+  name: ""
+  framework: mlx  # mlx, torch, hf
+  pretrained: ""
+  quantize: null  # null, 4, 8
+
+training:
+  epochs: 10
+  batch_size: 8
+  learning_rate: 1e-4
+  weight_decay: 0.01
+  warmup_steps: 100
+  max_steps: null
+  gradient_accumulation_steps: 1
+  seed: 42
+
+lora:
+  enabled: false
+  rank: 8
+  alpha: 16.0
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - v_proj
+  layers: 16
+
+tags: []

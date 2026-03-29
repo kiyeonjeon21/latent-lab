@@ -1,0 +1,24 @@
+defaults:
+  - base
+  - _self_
+
+name: rl_cartpole_ppo
+description: "PPO on CartPole-v1 with Stable-Baselines3"
+domain: rl
+task: train
+
+data:
+  name: CartPole-v1
+
+model:
+  name: PPO
+  framework: torch
+
+training:
+  max_steps: 100000
+  seed: 42
+
+tags:
+  - rl
+  - ppo
+  - cartpole
