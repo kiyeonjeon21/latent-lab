@@ -1,0 +1,21 @@
+defaults:
+  - base
+  - _self_
+
+name: ml_tuning_optuna
+description: "Hyperparameter tuning with Optuna"
+domain: ml
+task: tuning
+
+data:
+  name: digits
+
+model:
+  name: xgboost
+
+n_trials: 50
+
+training:
+  seed: 42
+
+tags: [ml, tuning, optuna]

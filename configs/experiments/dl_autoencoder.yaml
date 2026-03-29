@@ -5,7 +5,7 @@ defaults:
 name: dl_autoencoder_mnist
 description: "Convolutional Autoencoder on MNIST"
 domain: dl
-task: train_autoencoder
+task: autoencoder
 
 data:
   name: mnist

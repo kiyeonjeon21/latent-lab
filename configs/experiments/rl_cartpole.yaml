@@ -5,7 +5,7 @@ defaults:
 name: rl_cartpole_ppo
 description: "PPO on CartPole-v1 with Stable-Baselines3"
 domain: rl
-task: train
+task: classic
 
 data:
   name: CartPole-v1

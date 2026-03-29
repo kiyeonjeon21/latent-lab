@@ -1,0 +1,21 @@
+defaults:
+  - base
+  - _self_
+
+name: ml_explain_shap
+description: "SHAP explainability analysis"
+domain: ml
+task: explainability
+
+data:
+  name: iris
+
+model:
+  name: random_forest
+
+method: feature_importance
+
+training:
+  seed: 42
+
+tags: [ml, explainability, shap]

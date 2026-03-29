@@ -1,0 +1,19 @@
+defaults:
+  - base
+  - _self_
+
+name: nlp_embeddings
+description: "Semantic similarity with sentence-transformers"
+domain: nlp
+task: embeddings
+
+embedding_model: all-MiniLM-L6-v2
+corpus:
+  - "Machine learning uses algorithms to learn from data."
+  - "Deep learning is a subset of machine learning using neural networks."
+  - "Natural language processing deals with text and speech."
+  - "Computer vision focuses on image and video understanding."
+  - "I love eating pizza on Friday nights."
+query: "What is artificial intelligence?"
+
+tags: [nlp, embeddings, similarity]

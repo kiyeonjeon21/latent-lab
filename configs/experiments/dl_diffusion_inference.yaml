@@ -5,7 +5,7 @@ defaults:
 name: dl_diffusion_sd
 description: "Stable Diffusion inference on MPS"
 domain: dl
-task: diffusion_inference
+task: diffusion
 
 model:
   name: stable-diffusion

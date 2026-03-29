@@ -5,7 +5,7 @@ defaults:
 name: cv_classification
 description: "Image classification with PyTorch MPS"
 domain: cv
-task: classify
+task: classification
 
 data:
   name: cifar10

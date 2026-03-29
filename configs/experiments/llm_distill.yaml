@@ -1,0 +1,23 @@
+defaults:
+  - base
+  - _self_
+
+name: llm_distill_7b_to_3b
+description: "Knowledge distillation: 7B teacher → 3B student"
+domain: llm
+task: distillation
+
+teacher_model: mlx-community/Qwen2.5-7B-Instruct-4bit
+model:
+  pretrained: mlx-community/Llama-3.2-3B-Instruct-4bit
+
+output_path: data/processed/distill_7b_to_3b
+max_tokens: 512
+temperature: 0.7
+
+prompts:
+  - "Explain machine learning to a beginner."
+  - "What is the difference between CNN and RNN?"
+  - "How does gradient descent work?"
+
+tags: [llm, distillation]

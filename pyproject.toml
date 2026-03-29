@@ -66,6 +66,10 @@ dl = [
     "diffusers>=0.31.0",
     "safetensors>=0.4.0",
 ]
+tuning = [
+    "optuna>=4.0.0",
+    "shap>=0.46.0",
+]
 rl = [
     "gymnasium[classic-control,box2d]>=1.0.0",
     "stable-baselines3[extra]>=2.4.0",
@@ -90,7 +94,7 @@ dev = [
     "ipykernel>=6.29.0",
 ]
 all = [
-    "latent-lab[llm,cv,dl,rl,serving,notebooks,dev]",
+    "latent-lab[llm,cv,dl,rl,tuning,serving,notebooks,dev]",
 ]
 
 [project.scripts]

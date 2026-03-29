@@ -5,7 +5,7 @@ defaults:
 name: ml_regression_housing
 description: "Regression on California Housing (RF, XGBoost, LightGBM)"
 domain: ml
-task: regress
+task: regression
 
 data:
   name: california

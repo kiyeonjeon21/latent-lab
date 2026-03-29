@@ -1,0 +1,23 @@
+defaults:
+  - base
+  - _self_
+
+name: rag_pipeline
+description: "Local RAG pipeline with ChromaDB + Ollama"
+domain: rag
+task: pipeline
+
+embedding_model: nomic-embed-text
+llm_model: llama3.2:1b
+top_k: 3
+query: "How does MLX use Apple Silicon?"
+
+documents:
+  - "MLX is Apple's ML framework designed for Apple Silicon unified memory."
+  - "PyTorch MPS backend enables GPU acceleration on Mac through Metal."
+  - "LoRA reduces fine-tuning memory by training small adapter matrices."
+  - "Quantization reduces model size by using fewer bits per parameter."
+  - "ChromaDB is an open-source embedding database for building AI apps."
+  - "The M5 chip has Neural Accelerators in each GPU core for faster ML."
+
+tags: [rag, pipeline, chromadb, ollama]

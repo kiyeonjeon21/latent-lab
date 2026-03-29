@@ -1,0 +1,17 @@
+defaults:
+  - base
+  - _self_
+
+name: llm_quantize_compare
+description: "Compare 4-bit vs 8-bit quantization quality"
+domain: llm
+task: quantize
+
+model:
+  pretrained: mlx-community/Mistral-7B-Instruct-v0.3-4bit
+
+subtask: compare
+bit_levels: [4, 8]
+prompt: "Explain quantum computing in simple terms."
+
+tags: [llm, quantization, compare]

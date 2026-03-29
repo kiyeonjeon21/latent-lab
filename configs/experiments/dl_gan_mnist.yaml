@@ -5,7 +5,7 @@ defaults:
 name: dl_gan_mnist
 description: "DCGAN on MNIST with MPS"
 domain: dl
-task: train_gan
+task: gan
 
 data:
   name: mnist

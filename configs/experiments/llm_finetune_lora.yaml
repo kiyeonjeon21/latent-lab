@@ -3,18 +3,14 @@ defaults:
   - _self_
 
 name: llm_finetune_lora
-description: "LoRA fine-tuning with MLX on Apple Silicon"
+description: "LoRA fine-tuning with MLX"
 domain: llm
 task: finetune
 
 data:
-  name: custom_chat
   path: data/processed/finetune
-  split: train
 
 model:
-  name: mistral-7b-4bit
-  framework: mlx
   pretrained: mlx-community/Mistral-7B-Instruct-v0.3-4bit
   quantize: 4
 
@@ -22,17 +18,11 @@ training:
   batch_size: 4
   learning_rate: 1e-4
   max_steps: 600
-  seed: 42
 
 lora:
   enabled: true
   rank: 8
   alpha: 16.0
-  dropout: 0.05
   layers: 16
 
-tags:
-  - llm
-  - finetune
-  - lora
-  - mlx
+tags: [llm, finetune, lora]

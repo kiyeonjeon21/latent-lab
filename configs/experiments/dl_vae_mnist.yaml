@@ -1,0 +1,25 @@
+defaults:
+  - base
+  - _self_
+
+name: dl_vae_mnist
+description: "Variational Autoencoder on MNIST"
+domain: dl
+task: autoencoder
+
+data:
+  name: mnist
+  path: data/raw
+
+model:
+  name: vae
+  variant: vae
+  latent_dim: 16
+
+training:
+  epochs: 30
+  batch_size: 128
+  learning_rate: 1e-3
+  seed: 42
+
+tags: [dl, vae, mnist]

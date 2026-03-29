@@ -5,7 +5,7 @@ defaults:
 name: cv_detection_yolo
 description: "Object detection with YOLO on MPS"
 domain: cv
-task: detect
+task: detection
 
 data:
   name: coco8
