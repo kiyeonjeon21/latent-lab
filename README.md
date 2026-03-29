@@ -62,6 +62,11 @@ latent-lab/
 uv sync --all-extras     # install everything (ml, dl, llm, cv, rl, serving, notebooks, dev)
 brew install libomp       # required for XGBoost/LightGBM on macOS
 
+# ollama (for RAG) — use 0.12.4, not brew (see Known Issues)
+curl -L -o /tmp/Ollama-darwin.zip https://github.com/ollama/ollama/releases/download/v0.12.4/Ollama-darwin.zip
+unzip -o /tmp/Ollama-darwin.zip -d /tmp/ollama-0.12.4
+mkdir -p ~/.local/bin && cp /tmp/ollama-0.12.4/Ollama.app/Contents/Resources/ollama ~/.local/bin/
+
 # 2. Verify Apple Silicon ML setup
 make device-check
 # → PyTorch: 2.11.0, MPS: True
@@ -140,6 +145,23 @@ uv run lab serve mlx-community/Llama-3.2-3B-Instruct-4bit    # OpenAI-compatible
 | Inference | Llama 3.2 3B (4-bit) | MLX GPU | ~6sec load, fast generation |
 
 First run downloads the model (~2.5GB for 3B). Subsequent runs use cache.
+
+### RAG (`notebooks/03_rag_local.py`)
+
+```bash
+# Prerequisites: ollama 0.12.4 (see Known Issues for version requirement)
+~/.local/bin/ollama serve &
+~/.local/bin/ollama pull nomic-embed-text && ~/.local/bin/ollama pull llama3.2:1b
+uv run marimo edit notebooks/03_rag_local.py
+```
+
+| Component | Tool | Result |
+|-----------|------|--------|
+| Embedding | nomic-embed-text (768-dim) | 6 docs indexed via ChromaDB |
+| Retrieval | ChromaDB similarity search | Top-3 docs retrieved |
+| Generation | Llama 3.2 1B via Ollama | Contextual answer generated |
+
+Full pipeline (embed → retrieve → generate) tested end-to-end.
 
 ### Computer Vision (`domain: cv`)
 
@@ -250,6 +272,6 @@ Logged per run: config params, metrics (accuracy, loss, etc.), system metrics (C
 
 | Issue | Status | Workaround |
 |-------|--------|------------|
-| **ollama crash on macOS 26 + M5** | ollama 0.18.3 Metal shader compilation fails (`bfloat`/`half` type mismatch in `MetalPerformancePrimitives`). | Use MLX-LM for local LLM inference instead. RAG notebook requires ollama update. |
+| **ollama ≥0.13 crash on macOS 26 + M5** | Metal 4 `bfloat`/`half` type mismatch ([#13460](https://github.com/ollama/ollama/issues/13460), [#14432](https://github.com/ollama/ollama/issues/14432)). `brew install ollama` (0.18.3) crashes on model load. | **Use ollama 0.12.4**: download from [GitHub releases](https://github.com/ollama/ollama/releases/tag/v0.12.4), extract `Ollama.app/Contents/Resources/ollama` to `~/.local/bin/`. |
 | **SD 2.1 download fails unauthenticated** | Some HF models require auth token. | Use `stabilityai/sd-turbo` (works without auth) or set `HF_TOKEN`. |
 | **PyTorch MPS no float64** | Double precision not supported on MPS GPU. | Offload to CPU: `tensor.to("cpu").double()` |
