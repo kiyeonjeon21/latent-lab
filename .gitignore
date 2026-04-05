@@ -21,9 +21,11 @@ env/
 .DS_Store
 
 # ML artifacts
+models/weights/*
 models/checkpoints/
 models/adapters/
 models/exports/
+!models/**/.gitkeep
 *.ckpt
 *.safetensors
 *.bin
@@ -58,6 +60,9 @@ runs/
 # Reports
 reports/figures/*
 !reports/figures/.gitkeep
+
+# Node
+node_modules/
 
 # OS
 Thumbs.db
